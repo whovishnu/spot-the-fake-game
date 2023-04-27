@@ -1,38 +1,141 @@
+* {
+  box-sizing: border-box;
+  padding: 0%;
+  margin: 0%;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  background-color: #9275ff;
+  min-height: 100vh;
   color: white;
+  padding-top: 150px;
 }
 
-.App-link {
-  color: #61dafb;
+h1 {
+  margin-bottom: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.image-container {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 70%;
+}
+
+.image-container img{
+  width: 50%;
+  margin: 10px;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+.image-container img:active {
+  border: 2px solid blue;
+}
+
+.selectedImage {
+  border: 2px solid blue !important;
+}
+
+
+button {
+  padding: 12px 20px;
+  min-width: 150px;
+  border-radius: 10px;
+  border: none;
+  font-size: 22px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.alert {
+  opacity: 0;
+  position: absolute;
+  font-size: 40px;
+  left: 50%;
+  top: 50%;
+  color: rgb(37, 248, 37);
+  font-weight: 800;
+  -webkit-text-stroke: 2px black;
+  transform: translate(-50%,-50%);
+}
+
+.wrong{
+  color: rgb(228, 40, 40);
+}
+
+.timerBar, .bar{
+  width: 300px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+}
+
+input {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  margin-top: 30px;
+  border: 1px solid white;
+}
+
+input:focus{
+  outline: none;
+  border: 1px solid black;
+}
+
+.answere-msg {
+  animation: msg-popup infinite 0.7s linear;
+}
+
+.error{
+  color: red;
+}
+
+.scoreCard {
+  display: flex;
+  justify-content: space-between;
+  font-size: 22px;
+}
+
+.score-header {
+  margin: 30px;
+}
+
+@keyframes msg-popup {
+  0% { opacity: 0; }
+  40% {  opacity: 1; }
+  75% {  opacity: 1; }
+  100% { font-size: 90px; opacity: 0; } 
+}
+
+.timerBar::after {
+  position: absolute;
+  left: 0px;
+  content: '';
+  background-color: tomato;
+  height: 100%;
+  animation: timer infinite 15s linear;
+}
+
+@keyframes timer {
+  from { width: 0%; }
+  to{  width: 100%; }
+}
+
+
+@media (max-width:576px) {
+  .image-container {
+    flex-direction: column;
+    width: 90%;
+    align-items: center;
   }
 }

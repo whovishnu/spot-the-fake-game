@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Question from './components/Question';
+import HomePage from './components/Home';
+import Signup from './components/Signup';
 
 function App() {
+  const [isStart, setStart] = useState(false)
+  const [showSignup, setShowSignup] = useState(false)
+  const [playerScore, setPlayerScore] = useState(0)
+
+  const handleContinuous = (score) => {
+    setPlayerScore(score)
+    setShowSignup(true)
+  }
+
+  const handleRetry = () => {
+    setShowSignup(false)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isStart ? 
+        showSignup ? 
+          <Signup playerScore={playerScore} handleRetry={handleRetry}/> 
+          : <Question handleContinuous={handleContinuous}/> 
+        : <HomePage handleStart={() => setStart(true)}/>}
     </div>
   );
 }
